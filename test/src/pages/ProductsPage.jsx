@@ -1,50 +1,47 @@
 import React, { useState, useEffect } from "react";
 
 export const ProductsPage = () => {
-  // Состояния для хранения информации о загрузке, ошибке и товарах
+  // States for storing download information
   const [loading, setLoading] = useState(true); // Флаг загрузки
   const [error, setError] = useState(null); // Сообщение об ошибке
   const [products, setProducts] = useState([]); // Список товаров
 
   useEffect(() => {
-    // Функция для загрузки товаров
+    // Function for loading products
     const fetchProducts = async () => {
       try {
-        // Выполнение запроса к API
+        // API request
         const response = await fetch(
           "http://api.valantis.store:40000/products"
         );
-        // Проверка успешности запроса
+        // request success rate
         if (!response.ok) {
-          // Если запрос неудачен, выбрасываем ошибку
           throw new Error("Failed to fetch products");
         }
-        // Если запрос успешен, получаем данные и устанавливаем состояние загрузки в false
+
         const data = await response.json();
         setProducts(data);
         setLoading(false);
       } catch (error) {
-        // Если произошла ошибка, устанавливаем состояние ошибки и состояние загрузки в false
         setError(error.message);
         setLoading(false);
       }
     };
 
-    // Вызов функции для загрузки товаров 
     fetchProducts();
-  }, []); // Зависимость пустая, поэтому useEffect вызывается только один раз 
+  }, []); // useEffect is called only once
 
-  // Если данные загружаются, отображаем сообщение о загрузке
+  // If the data is being loaded, we display a message about loading
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Если произошла ошибка при загрузке данных, отображаем сообщение об ошибке
+  // error message
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  // Если данные успешно загружены, отображаем список товаров
+  // If uploaded successfully, we display the list of products
   return (
     <div>
       <h1>Products</h1>
