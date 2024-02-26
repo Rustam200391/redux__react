@@ -12,7 +12,7 @@ export const ProductsPage = () => {
       try {
         // API request
         const response = await fetch(
-          "http://api.valantis.store:40000/products"
+          "http://api.valantis.store:41000/products"
         );
         // request success rate
         if (!response.ok) {
