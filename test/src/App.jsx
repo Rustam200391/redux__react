@@ -1,23 +1,19 @@
 import "./App.css";
-import { ProductsPage } from "./pages/ProductsPage";
-import { HomePage } from "./pages/HomePage";
-import { NotFoundPage } from "./pages/NotFoundPage";
-import { Blog } from "./pages/Blog";
-import { Routes, Route, Link } from "react-router-dom";
+import { TaskList } from "./pages/TaskList";
+import { EditTaskPage } from "./pages/EditTaskPage";
+import TaskDetailPage from "./pages/TaskDetailPage";
+// import { HomePage } from "./pages/HomePage";
+// import { NotFoundPage } from "./pages/NotFoundPage";
+import { Routes, Route } from "react-router-dom";
+// import TaskListContainer from "./pages/TaskListContainer";
 
 function App() {
   return (
     <>
-      <header>
-        <Link to="/">Home</Link>
-        <Link to="/product">ProductsPage</Link>
-        <Link to="/posts">Blog</Link>
-      </header>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/product" element={<ProductsPage />} />
-        <Route path="/posts" element={<Blog />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/task/:taskId/edit" element={<EditTaskPage />} />
+        <Route path="/" element={<TaskList />} />
+        <Route path="/task/:taskId" element={<TaskDetailPage />} />
       </Routes>
     </>
   );
