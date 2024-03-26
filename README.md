@@ -1,1 +1,1 @@
-<i>Here will be documentation about API
+Here will be documentation about API
